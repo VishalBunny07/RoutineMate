@@ -23,8 +23,8 @@ def show_notification(title, message):
     
 def morning_routine():
     """Task to be run in the morning."""
-    speak("Good morning Bunny! Time to wake up and start your day.")
-    show_notification("Morning Routine", "Good morning Bunny! Time to wake up and start your day.")
+    speak("Good morning ! Time to wake up and start your day.")
+    show_notification("Morning Routine", "Good morning ! Time to wake up and start your day.")
     
     routine_details = [
         "1. Brush your teeth.",
@@ -48,8 +48,8 @@ def work_reminder():
 
 def evening_routine_windup():
     """Task to be run in the evening."""
-    speak("Good evening Bunny! Time to wind down and relax.")
-    show_notification("Evening Routine", "Good evening Bunny! Time to wind down and relax.")
+    speak("Good evening ! Time to wind down and relax.")
+    show_notification("Evening Routine", "Good evening ! Time to wind down and relax.")
     
     routine_details = [
         "1. Reflect on your day.",
@@ -91,7 +91,7 @@ def show_routine():
 
 # Schedule tasks
 print("your routine Agent is running...")    
-speak("Bunny, routine agent is activated. I will notify about your routines.")
+speak(", routine agent is activated. I will notify about your routines.")
 
 # Display today's routine
 todays_routine_list = show_routine() 
