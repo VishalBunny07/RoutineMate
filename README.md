@@ -1,6 +1,6 @@
 # RoutineMate 🤖
 
-Your personal AI-powered routine assistant that helps you stay on track with daily habits through voice notifications and desktop reminders.
+Your personal routine assistant that helps you stay on track with daily habits through voice notifications and desktop reminders.
 
 ## ✨ Features
 
