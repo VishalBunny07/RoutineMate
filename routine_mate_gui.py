@@ -41,10 +41,7 @@ class StyledRoutineMateGUI:
         """Configure modern styling for the application"""
         style = ttk.Style()
         
-        # Configure theme
         style.theme_use('clam')
-        
-        # Color scheme
         self.colors = {
             'primary': '#2E86AB',
             'secondary': '#A23B72',
@@ -56,14 +53,14 @@ class StyledRoutineMateGUI:
             'background': '#F8F9FA'
         }
         
-        # Configure styles
+        
         style.configure('Primary.TFrame', background=self.colors['background'])
         style.configure('Card.TFrame', background='white', relief='raised', borderwidth=1)
         style.configure('Title.TLabel', font=('Arial', 18, 'bold'), foreground=self.colors['primary'])
         style.configure('Subtitle.TLabel', font=('Arial', 12, 'bold'), foreground=self.colors['dark'])
         style.configure('Accent.TLabel', font=('Arial', 10), foreground=self.colors['secondary'])
         
-        # Button styles
+        
         style.configure('Primary.TButton', 
                        font=('Arial', 10, 'bold'),
                        background=self.colors['primary'],
@@ -98,11 +95,10 @@ class StyledRoutineMateGUI:
                            ('pressed', '#C0392B')])
         
     def setup_ui(self):
-        # Main container with background
         main_container = ttk.Frame(self.root, style='Primary.TFrame')
         main_container.pack(fill=tk.BOTH, expand=True)
         
-        # Header
+        
         header_frame = ttk.Frame(main_container, style='Card.TFrame')
         header_frame.pack(fill=tk.X, padx=20, pady=10)
         
@@ -116,15 +112,12 @@ class StyledRoutineMateGUI:
                                   style='Subtitle.TLabel')
         subtitle_label.pack(pady=(0, 10))
         
-        # Create notebook for tabs
+        
         notebook = ttk.Notebook(main_container)
         notebook.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
-        
-        # Main Tab
         main_tab = ttk.Frame(notebook, style='Primary.TFrame')
         notebook.add(main_tab, text="📊 Dashboard")
         
-        # Settings Tab
         settings_tab = ttk.Frame(notebook, style='Primary.TFrame')
         notebook.add(settings_tab, text="⚙️ Schedule Settings")
         
@@ -132,14 +125,13 @@ class StyledRoutineMateGUI:
         self.setup_settings_tab(settings_tab)
         
     def setup_main_tab(self, parent):
-        # Status and Control Section
         control_frame = ttk.Frame(parent, style='Card.TFrame')
         control_frame.pack(fill=tk.X, pady=10, padx=10)
         
-        # Status indicator
+
         status_header = ttk.Label(control_frame, text="Agent Status", style='Subtitle.TLabel')
         status_header.pack(anchor=tk.W, pady=(10, 5))
-        
+     
         status_content = ttk.Frame(control_frame, style='Card.TFrame')
         status_content.pack(fill=tk.X, padx=10, pady=5)
         
@@ -147,8 +139,6 @@ class StyledRoutineMateGUI:
         status_label = ttk.Label(status_content, textvariable=self.status_var, 
                                 font=('Arial', 12, 'bold'), foreground=self.colors['danger'])
         status_label.pack(side=tk.LEFT)
-        
-        # Control buttons
         button_frame = ttk.Frame(status_content, style='Card.TFrame')
         button_frame.pack(side=tk.RIGHT)
         
@@ -160,10 +150,9 @@ class StyledRoutineMateGUI:
                                      command=self.stop_agent, state=tk.DISABLED, style='Danger.TButton')
         self.stop_button.pack(side=tk.LEFT, padx=5)
         
-        # Current schedules display
         schedule_frame = ttk.Frame(parent, style='Card.TFrame')
         schedule_frame.pack(fill=tk.X, pady=10, padx=10)
-        
+    
         schedule_header = ttk.Label(schedule_frame, text="📅 Current Schedule", style='Subtitle.TLabel')
         schedule_header.pack(anchor=tk.W, pady=(10, 5), padx=10)
         
@@ -175,10 +164,9 @@ class StyledRoutineMateGUI:
         self.update_schedule_display()
         self.schedule_display.config(state=tk.DISABLED)
         
-        # Manual trigger section
+        
         manual_frame = ttk.Frame(parent, style='Card.TFrame')
         manual_frame.pack(fill=tk.X, pady=10, padx=10)
-        
         manual_header = ttk.Label(manual_frame, text="🎮 Manual Controls", style='Subtitle.TLabel')
         manual_header.pack(anchor=tk.W, pady=(10, 5), padx=10)
         
@@ -199,14 +187,13 @@ class StyledRoutineMateGUI:
             btn.grid(row=i//3, column=i%3, padx=5, pady=5, sticky="ew")
             manual_content.grid_columnconfigure(i%3, weight=1)
         
-        # Activity Log
+        
         log_frame = ttk.Frame(parent, style='Card.TFrame')
         log_frame.pack(fill=tk.BOTH, expand=True, pady=10, padx=10)
         
         log_header = ttk.Label(log_frame, text="📋 Activity Log", style='Subtitle.TLabel')
         log_header.pack(anchor=tk.W, pady=(10, 5), padx=10)
         
-        # Create a scrollable text widget for logs
         log_text_frame = ttk.Frame(log_frame, style='Card.TFrame')
         log_text_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
         
@@ -218,12 +205,9 @@ class StyledRoutineMateGUI:
                                relief='solid', borderwidth=1)
         self.log_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         log_scrollbar.config(command=self.log_text.yview)
-        
-        # Add initial log message
         self.log("Application started. Configure schedules in Settings tab.")
         
     def setup_settings_tab(self, parent):
-        # Header
         header_frame = ttk.Frame(parent, style='Card.TFrame')
         header_frame.pack(fill=tk.X, pady=10, padx=10)
         
@@ -235,15 +219,12 @@ class StyledRoutineMateGUI:
                                 wraplength=600, justify=tk.CENTER, style='Accent.TLabel')
         instructions.pack(pady=(0, 10))
         
-        # Schedule settings frame
+       
         settings_frame = ttk.Frame(parent, style='Card.TFrame')
         settings_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        
-        # Create a container for better alignment
         form_container = ttk.Frame(settings_frame, style='Card.TFrame')
         form_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
-        # Schedule inputs with icons
         schedule_configs = [
             ("🌅 Morning Routine:", "morning", "07:00", "(e.g., 07:00)"),
             ("🍽️ Lunch Reminder:", "lunch", "12:30", "(e.g., 12:30)"),
@@ -292,7 +273,6 @@ class StyledRoutineMateGUI:
         self.schedule_display.config(state=tk.NORMAL)
         self.schedule_display.delete(1.0, tk.END)
     
-        # Create perfectly aligned schedule text using fixed-width formatting
         schedule_text = f"""📅 Your Daily Schedule:
 
         🌅 Morning Routine:   {self.schedules['morning']:>5}
@@ -306,10 +286,9 @@ class StyledRoutineMateGUI:
         """
         self.schedule_display.insert(tk.END, schedule_text)
     
-        # Add some color to the text
+        
         self.schedule_display.tag_configure("title", foreground=self.colors['primary'], font=('Arial', 10, 'bold'))
         self.schedule_display.tag_add("title", "1.0", "2.0")
-    
         self.schedule_display.config(state=tk.DISABLED)
         
     def validate_time_format(self, time_str):
@@ -325,8 +304,6 @@ class StyledRoutineMateGUI:
         if self.agent_active:
             messagebox.showwarning("Warning", "⚠️ Please deactivate agent before changing schedules.")
             return
-            
-        # Validate all time formats
         times = {
             "morning": self.morning_var.get(),
             "lunch": self.lunch_var.get(),
@@ -340,7 +317,7 @@ class StyledRoutineMateGUI:
                 messagebox.showerror("Error", f"❌ Invalid time format for {name.replace('_', ' ').title()}.\nPlease use HH:MM format (e.g., 07:30).")
                 return
         
-        # Validate water interval
+        
         try:
             water_interval = int(self.water_var.get())
             if water_interval <= 0:
@@ -349,10 +326,9 @@ class StyledRoutineMateGUI:
             messagebox.showerror("Error", "❌ Water interval must be a positive integer.")
             return
         
-        # Save all schedules
+        
         self.schedules.update(times)
         self.schedules["water_interval"] = water_interval
-        
         self.update_schedule_display()
         self.log("✅ Schedules updated successfully.")
         messagebox.showinfo("Success", "✅ Schedules updated successfully!")
@@ -405,7 +381,7 @@ class StyledRoutineMateGUI:
         timestamp = time.strftime("%H:%M:%S")
         self.log_text.config(state=tk.NORMAL)
         
-        # Color coding for different message types
+     
         if message.startswith("✅"):
             tag = "success"
             self.log_text.tag_config(tag, foreground=self.colors['success'])
@@ -502,11 +478,9 @@ class StyledRoutineMateGUI:
         self.status_var.set("🟢 Agent is active")
         self.start_button.config(state=tk.DISABLED)
         self.stop_button.config(state=tk.NORMAL)
-        
-        # Clear existing schedule
         schedule.clear()
         
-        # Schedule tasks with current times
+        
         schedule.every().day.at(self.schedules["morning"]).do(self.morning_routine)
         schedule.every().day.at(self.schedules["lunch"]).do(self.lunch_reminder)
         schedule.every().day.at(self.schedules["work"]).do(self.work_reminder)
@@ -514,10 +488,9 @@ class StyledRoutineMateGUI:
         schedule.every().day.at(self.schedules["bedtime"]).do(self.bedtime_reminder)
         schedule.every(self.schedules["water_interval"]).hours.do(self.water_remainder)
         
-        # Start the schedule thread
+        
         self.schedule_thread = threading.Thread(target=self.run_schedule, daemon=True)
         self.schedule_thread.start()
-        
         self.speak(f"Routine agent is activated. I will notify you according to your schedule.")
         self.log("🟢 Agent activated with current schedule")
         
@@ -531,9 +504,7 @@ class StyledRoutineMateGUI:
         self.start_button.config(state=tk.NORMAL)
         self.stop_button.config(state=tk.DISABLED)
         
-        # Clear all scheduled tasks
         schedule.clear()
-        
         self.speak("Agent deactivating. Goodbye!")
         self.log("🔴 Agent deactivated")
         
@@ -547,8 +518,6 @@ def main():
     root = tk.Tk()
     app = StyledRoutineMateGUI(root)
     root.protocol("WM_DELETE_WINDOW", app.on_closing)
-    
-    # Center the window on screen
     root.update_idletasks()
     x = (root.winfo_screenwidth() // 2) - (root.winfo_width() // 2)
     y = (root.winfo_screenheight() // 2) - (root.winfo_height() // 2)
