@@ -26,6 +26,17 @@ Make sure you have Python 3.6+ installed on your system.
 | 10:30 PM | Bedtime Reminder | Sleep preparation routine |
 | Every Hour | Water Reminder | Stay hydrated throughout the day |
 
+## GUI Based
+**New GUI based using tikinter added and can be customized the schedule with logs**
+**Here are the image of GUI**
+
+
+*1. Default entered Routine*
+<img width="1366" height="768" alt="Screenshot (238)" src="https://github.com/user-attachments/assets/9d707931-0e52-4775-aef5-5ad8663ab6b3" />
+
+*2. Schedule update routine*
+<img width="1366" height="768" alt="Screenshot (239)" src="https://github.com/user-attachments/assets/91830802-5993-4a51-9cfd-650c44a0874a" />
+
 
 ## 🖥️ Usage
 
